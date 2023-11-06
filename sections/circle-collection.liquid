@@ -1,0 +1,101 @@
+<section class="section ">
+  <header class="section__header text-container">
+    <h3 class="heading h2">{{ section.settings.custom_heading }}</h3>
+  </header>
+  <div class="custom-bg">
+    <div class="container">
+      <div class="main-circle">
+        {%- for block in section.blocks -%}
+          <div class="circle-items">
+            {% if block.settings.imgs1 != blank %}
+              <a href="{{block.settings.image_url}}" style="text-decoration: none;">
+                <img src="{{ block.settings.imgs1 | img_url:"master" }}" class="imgsss" loading="lazy" width="{{ block.settings.imgs1.width }}" height="{{ block.settings.imgs1.height }}">
+                <div class="data-name">{{ block.settings.name }}</div>
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+    .custom-bg{
+      background:{{ section.settings.bg_color }};
+      color:{{ section.settings.color_heading }};
+      padding-top:15px;
+      padding-bottom:15px;
+    }
+    .main-circle{
+       display: grid;
+    grid-template-columns: repeat(8, 1fr);
+      grid-gap: 10px;
+    }
+
+    .circle-items{
+      text-align:center;
+    }
+    .data-name{
+      font-size: 18px;
+      font-weight: bold;
+      margin: 10px auto;
+    }
+  @media only screen and (max-width: 768px) {
+    .main-circle {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "circle-collection",
+  "settings": [
+	{
+	 "type":"text",
+	 "id" : "custom_heading",
+	  "label" : "heading"
+	},{
+  "type": "color",
+  "id": "bg_color",
+  "label": "background"
+
+},{
+  "type": "color",
+  "id": "color_heading",
+  "label": "name color"
+
+}
+],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "text field",
+      "settings": [
+		{
+          "type": "image_picker",
+          "id": "imgs1",
+          "label": "Image"  },
+		{
+		 "type": "url",
+		"id": "image_url",
+		"label" : "Link"
+		},
+		{
+		 "type": "text",
+		"id": "name",
+		"label" : "Name",
+          "default":"Title"
+		}
+      ]}
+],
+  "presets": [
+    {
+      "category": "Advanced",
+      "name": "circle-collection",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

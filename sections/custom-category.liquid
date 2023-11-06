@@ -1,0 +1,215 @@
+{% if collection.metafields["custom_fields"]["custom-category"] != blank %}
+<div class="custommm">
+  <div class="section__color-wrapper customm">
+    <div class="container">
+      <div class="custom_category" id="category_slider">
+        {% for item in collection.metafields["custom_fields"]["custom-category"] %}
+         {% if item["image"] != blank %}
+        <div class="category_data">
+          <a href="  {{ item["url"] }}">
+                 {{ item["image"] }}
+          </a>
+          <div class="multi-column__text-container text--center text-container">
+            <p class="heading "> {{ item["name"] }}</p>
+            </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .category_data{
+  margin:10px;
+  }
+  .custom_category img{
+    border-radius: 10px;
+  }
+  .category_data .heading{
+        padding-top: 7px;
+    font-weight: 900;
+    font-size: 17px;
+    text-transform: capitalize;
+  }
+  .custom_category .slick-track{
+  	margin: auto;
+  }
+  
+  div#category_slider .slick-prev, .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 1;
+}
+.slick-prev:before, .slick-next:before {
+    color: #292e3e;
+    background: #ffff;
+    /* width: 30px; */
+    /* height: 46px; */
+    padding: 14px 8px 4px;
+}
+  .slick-prev:before, .slick-next:before {
+    font-size: 30px;
+    opacity: 1;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    z-index: 99999990;line-height: 10px;
+}
+.slick-prev:before {
+content: url('https://cdn.shopify.com/s/files/1/0486/0634/7416/files/reshot-icon-left-arrow-VCGUT7EKR3_1.svg?v=1663062609');
+}
+    .slick-next {
+    right: 42px;
+}
+  .slick-prev {
+    left: 10px;
+}
+  @media screen and (max-width: 768px) {
+      .slick-next {
+    right: 0px;
+}
+  .slick-prev {
+    left: 0px;
+}
+  }
+    
+  .slick-next:before {
+    content: url('https://cdn.shopify.com/s/files/1/0486/0634/7416/files/reshot-icon-right-arrow-UCA8NGYZDJ.svg?v=1663062454');
+}
+  
+  .slick-prev:before, .slick-next:before {
+    color: #292e3e;
+}
+  
+   .slick-dots {
+    position: absolute;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;bottom: -30px;
+}
+
+ .slick-dots li {    
+   position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+   
+}
+  .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+  
+  .slick-dots li button:before {   
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    content: ' ';
+    text-align: center;
+    opacity: .25;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 50%;
+    border: 1px solid #313131;
+       
+}
+  .slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: black;background: currentColor;
+    border-color: currentColor;
+}
+</style>
+
+    <script>
+  $('#category_slider').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+   arrows: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4.5,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+         dots: false,
+         arrows: false,
+           centerMode: false,
+        infinite: false,
+        slidesToShow: 2.5,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+         dots: false,
+         arrows: false,
+         centerMode: false,
+        infinite: false,
+        slidesToShow: 2.5,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "custom-Category",
+  "settings": [ 
+   ],
+ 
+  "presets": [
+    {
+      "category": "collection",
+      "name": "custom-Category"
+    }
+  ]
+}
+{% endschema %}
+

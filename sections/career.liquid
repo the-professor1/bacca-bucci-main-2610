@@ -1,0 +1,160 @@
+<style>
+  .fromblock {
+    background: #f2e4db;
+        padding: 50px 0;
+       margin: auto;
+  } 
+  .frommainblock h2.headtextblock {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 59px;
+    text-align: center;
+    color: #000;
+    margin: 0 0 30px;
+  }
+  .jobdetails{
+     background: #fff;
+    padding: 20px 50px;
+    max-width: 750px;
+    margin: auto;
+    margin-bottom: 30px;
+    position: relative;text-align: left;
+  }
+  
+  .jobdetailsblock p {
+    font-size: 20px;
+    line-height: 32px;
+}
+  .jobdetailsblock { margin-bottom: 1rem; } 
+  
+  @media (max-width: 600px) {
+    .jobdetails{
+     	background: #fff;
+    	padding: 20px;
+    }
+     .apply_btn {
+    width: 100%;
+	}
+  }
+@media (min-width: 601px) {  
+    .buttonblock {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+  }
+}
+</style>
+<div class="fromblock">  
+  <div class="frommainblock center">    
+    	<h2 class="headtextblock">Open Positions</h2>
+    	
+    	{%- for block in section.blocks -%}
+        
+      	<div class="jobdetails">      
+        	<div class="jobdetailsblock">
+              <p><strong>{{block.settings.jobtitle}}</strong> | {{block.settings.jobplace}}</p>
+       	   </div> 
+        	<div class="jobdetailsblock">
+              <p><strong>{{block.settings.reqyear}}</strong></p>
+       	   </div> 
+          <div class="jobdetailsblock">
+                <p><strong>Job Description</strong></p>
+             </div> 
+          <div class="jobdetailsblock">
+            <p><strong>Role:</strong>{{block.settings.jobrole}}</p>
+          </div> 
+          <div class="jobdetailsblock">
+            <p><strong>Skill:</strong>{{block.settings.jobskill}}</p>
+          </div> 
+          <div class="jobdetailsblock">
+            <p><strong>CTC:</strong>{{block.settings.jobctc}}</p>
+          </div> 
+          <div class="jobdetailsblock">
+          <p><strong>How To Apply:</strong>{{block.settings.jobhowtoapply}}</p>
+        </div> 
+          <div class="buttonblock">
+            <button class="apply_btn button button--primary__filled" job_title="{{block.settings.jobtitle}}">Apply</button>
+          </div>
+      </div>
+        {%- endfor -%}	
+    	{% comment %}
+    
+    <!-- The Modal -->
+<div id="careerformmodal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div style="margin: 0 auto;" class="pxFormGenerator" id="_N4L4rGPKIMPX_tvQ60GCQ"></div>
+  </div>
+
+</div>
+  </div> 
+</div>
+  <script>
+    $(document).ready(function(){
+      $('.apply_btn').click(function(){
+      	var jobrole = $(this).attr('job_title');
+        $('#careerformmodal').css('display','block');
+        $('#wizard-validation-form #formGeneratorForm #form_input_1').val(jobrole);console.log(jobrole);
+         
+      });
+    });
+  </script>
+{% endcomment %}
+{% schema %}
+  {
+    "name": "Job Section",
+    "settings": [],
+	"blocks": [
+    {
+      "type": "text",
+      "name": "jobs field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "jobtitle",
+          "label": "Job Heading"
+        },
+		{
+          "type": "text",
+          "id": "jobplace",
+          "label": "Job location"
+        },
+		{
+          "type": "text",
+          "id": "reqyear",
+          "label": "Job req. Year"
+        },
+		{
+          "type": "text",
+          "id": "jobrole",
+          "label": "Job Role"
+        },
+		{
+          "type": "text",
+          "id": "jobskill",
+          "label": "Job Skill"
+        },
+		{
+          "type": "text",
+          "id": "jobctc",
+          "label": "Job CTC"
+        },
+		{
+          "type": "text",
+          "id": "jobhowtoapply",
+          "label": "How To Apply"
+        }
+      ]
+    }    
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,48 @@
+{% if settings.goEnable %}
+<div class="gokwik-checkout"{% if settings.hideFlow %} style="display:none !important;" {% endif %}>
+  <button  subtotal="{{ cart.total_price | divided_by: 100 }}" type='button' class="CartDrawer-Checkout" onclick="onCheckoutClick(this); sendGTMEvent();">
+    <span class="btn-text" >
+        <span>{% comment %}{{ settings.main-titile }}{% endcomment %} Proceed to checkout</span>
+        <span>{{ settings.sub-titile }}</span>
+    </span>
+    <span class="pay-opt-icon">
+        <img src="https://cdn.gokwik.co/v4/images/upi-icons.svg">
+        <img src="https://cdn.gokwik.co/v4/images/right-arrow.svg">     
+    </span>
+    <div style="display:none"><div class="cir-loader">Loading..</div></div>
+  </button>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NQFCQFN');</script>
+<!-- End Google Tag Manager -->
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQFCQFN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</div>
+<script>
+  
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if the button with the class "CartDrawer-Checkout" exists
+  const button = document.querySelector(".CartDrawer-Checkout");
+  
+  if (button) {
+      // Button exists, add an event listener for its click event
+      button.addEventListener("click", function() {
+        sendGTMEvent();
+      });
+  }
+});
+const cartTotal = document.querySelector('.CartDrawer-Checkout')?.getAttribute('subtotal');
+function sendGTMEvent() {
+  gtag('event', 'conversion', {
+      'send_to': 'AW-612402121/rX0ICNTU4dcBEMmHgqQC',
+      'value': cartTotal
+  });
+}
+</script>
+{% endif %}
